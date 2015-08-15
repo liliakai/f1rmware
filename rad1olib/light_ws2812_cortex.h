@@ -14,6 +14,7 @@
 
 #include <libopencm3/lpc43xx/gpio.h>
 #include "setup.h"
+#include "pins.h"
 
 ///////////////////////////////////////////////////////////////////////
 // User defined area: Define I/O pin
@@ -24,11 +25,11 @@
 // mask and addresses may be the same. This example is for the
 // NXP LPC81X
 
-#define ws2812_port_set ((uint32_t*)&GPIO4_SET)	// Address of the data port register to set the pin
-#define ws2812_port_clr	((uint32_t*)&GPIO4_CLR)	// Address of the data port register to clear the pin
+#define ws2812_port_set ((uint32_t*)&GPIO_SET(_GPORT(RGB_LED)))	// Address of the data port register to set the pin
+#define ws2812_port_clr	((uint32_t*)&GPIO_CLR(_GPORT(RGB_LED)))	// Address of the data port register to clear the pin
 
-#define ws2812_mask_set  (1<<0)		// Bitmask to set the data out pin
-#define ws2812_mask_clr  (1<<0)		// Bitmask to clear the data out pin
+#define ws2812_mask_set  _GPIN(RGB_LED)          // Bitmask to set the data out pin
+#define ws2812_mask_clr  _GPIN(RGB_LED)   	// Bitmask to clear the data out pin
 
 ///////////////////////////////////////////////////////////////////////
 // User defined area: Define CPU clock speed
